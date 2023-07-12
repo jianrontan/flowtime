@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button } from 'react-native';
-import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+import { CountdownCircleTimer, useCountdown } from 'react-native-countdown-circle-timer';
 
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 
 function Break({ route, navigation }) {
     const { time, sliderValue } = route.params;
+    const [isPlaying, setIsPlaying] = useState(true);
 
     console.log(time);
     console.log(sliderValue);
@@ -17,9 +18,10 @@ function Break({ route, navigation }) {
 
     const test = timeToSeconds(time);
     const seconds = timeToSeconds(time) * (sliderValue / 60).toFixed(0);
-    const intSeconds = parseInt(seconds);
+    let intSeconds = parseInt(seconds);
     console.log(test);
     console.log(seconds);
+    console.log(intSeconds);
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightBeige }}>
@@ -28,9 +30,12 @@ function Break({ route, navigation }) {
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
                         <CountdownCircleTimer
-                            isPlaying={true}
+                            isPlaying={isPlaying}
                             duration={intSeconds}
-                        />
+                            updateInterval={1}
+                        >
+                            {({ remainingTime }) => <Text>{remainingTime}</Text>}
+                        </CountdownCircleTimer>
                     </View>
 
                 </View>
