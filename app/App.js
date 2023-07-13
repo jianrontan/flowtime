@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SplashScreen, useRouter } from 'expo-router';
 import { useFonts } from 'expo-font';
 
@@ -13,6 +14,7 @@ import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import { ScreenHeaderBtn, TimeSlider, SessionBtn } from '../myComponents';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 function App() {
     // State variable appIsReady tracks when app is ready to render
@@ -59,6 +61,13 @@ function App() {
     return (
         <NavigationContainer onLayout={onLayoutRootView}>
             <Stack.Navigator initialRouteName='Home'>
+                <Drawer.Navigator
+                    drawerType="front"
+                    initialRouteName="Profile"
+
+                >
+                    <Drawer.Screen name="Home" component={Home} />
+                </Drawer.Navigator>
                 <Stack.Group screenOptions={{
                         headerStyle: { backgroundColor: COLORS.lightBeige },
                         headerShadowVisible: true,
