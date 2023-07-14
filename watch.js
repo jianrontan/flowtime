@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button, NativeModules, TouchableOpacity } from 'react-native';
 import { Stopwatch } from 'react-native-stopwatch-timer';
 
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
-import styles from '../myComponents/study/Styles/break.style';
+import { COLORS, icons, images, FONT, SIZES } from './constants';
+import styles from './myComponents/study/Styles/break.style';
 
 function Watch({ route, navigation }) {
     const { sliderValue, startStopwatch } = route.params;

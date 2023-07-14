@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button } from 'react-native';
 
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
-import { TimeSlider, SessionBtn } from '../myComponents';
+import { COLORS, icons, images, FONT, SIZES } from './constants';
+import { TimeSlider, SessionBtn } from './myComponents';
 
 function Home({navigation}) {
     const [sliderValue, setSliderValue] = useState(10);

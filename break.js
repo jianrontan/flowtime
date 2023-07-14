@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button } from 'react-native';
 import { CountdownCircleTimer, useCountdown } from 'react-native-countdown-circle-timer';
 
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { COLORS, icons, images, FONT, SIZES } from './constants';
 
 function Break({ route, navigation }) {
     const { time, sliderValue } = route.params;

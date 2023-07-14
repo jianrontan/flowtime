@@ -8,9 +8,9 @@ import { useFonts } from 'expo-font';
 import Break from './break';
 import Watch from './watch';
 import Home from './home';
-import styles from '../myComponents/common/header/header/header.style';
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
-import { ScreenHeaderBtn, TimeSlider, SessionBtn } from '../myComponents';
+import styles from './myComponents/common/header/header/header.style';
+import { COLORS, icons, images, FONT, SIZES } from './constants';
+import { ScreenHeaderBtn, TimeSlider, SessionBtn } from './myComponents';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,9 +20,9 @@ function App() {
 
     // Load fonts
     const [fontsLoaded] = useFonts({
-        MontBold: require('../assets/fonts/Montserrat-Bold.ttf'),
-        MontMed: require('../assets/fonts/Montserrat-Medium.ttf'),
-        MontReg: require('../assets/fonts/Montserrat-Regular.ttf'),
+        MontBold: require('./assets/fonts/Montserrat-Bold.ttf'),
+        MontMed: require('./assets/fonts/Montserrat-Medium.ttf'),
+        MontReg: require('./assets/fonts/Montserrat-Regular.ttf'),
       });
     
     // useEffect hook calls prepare function
