@@ -1,20 +1,51 @@
 import { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button, StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SplashScreen, useRouter } from 'expo-router';
+import { SplashScreen } from 'expo-router';
 import { useFonts } from 'expo-font';
 
+import About from './about';
+import Settings from './settings';
+import Stats from './statistics';
+import Profile from './profile';
 import Break from './break';
 import Watch from './watch';
 import Home from './home';
 import styles from '../myComponents/common/header/header/header.style';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import { ScreenHeaderBtn, TimeSlider, SessionBtn } from '../myComponents';
+import Statistics from './statistics';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+
+function HomeStack({navigation}) {
+    return (
+        <Stack.Navigator
+            initialRouteName='Home'
+            screenOptions={{
+                headerStyle: { backgroundColor: COLORS.lightBeige },
+                headerLeft: () => (
+                    <ScreenHeaderBtn 
+                        iconUrl={icons.menu} 
+                        dimension="60%" 
+                        onPress={() => navigation.openDrawer()}
+                    />
+                ),
+                headerTitle: () => (
+                    <Text style={styles.headerStyle}>Flowtime</Text>
+                ),
+                headerTitleAlign: 'center',
+            }}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Watch" component={Watch} />
+            <Stack.Screen name="Break" component={Break} />
+            <Stack.Screen name="Stats" component={Stats} />
+        </Stack.Navigator>
+    );
+}
 
 function App() {
     // State variable appIsReady tracks when app is ready to render
@@ -60,32 +91,27 @@ function App() {
 
     return (
         <NavigationContainer onLayout={onLayoutRootView}>
-            <Stack.Navigator initialRouteName='Home'>
-                <Drawer.Navigator
-                    drawerType="front"
-                    initialRouteName="Profile"
-
-                >
-                    <Drawer.Screen name="Home" component={Home} />
-                </Drawer.Navigator>
-                <Stack.Group screenOptions={{
-                        headerStyle: { backgroundColor: COLORS.lightBeige },
-                        headerShadowVisible: true,
-                        headerLeft: () => (
-                            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-                        ),
-                        headerTitle: () => (
-                            <Text style={styles.headerStyle}>
-                                Flowtime
-                            </Text>
-                        ),
-                        headerTitleAlign: 'center',
-                    }}>
-                    <Stack.Screen name="Home" component={Home} />
-                    <Stack.Screen name="Watch" component={Watch} />
-                    <Stack.Screen name="Break" component={Break} />
-                </Stack.Group>
-            </Stack.Navigator>
+            <Drawer.Navigator
+                initialRouteName="Drawer"
+                screenOptions={{
+                    headerShown:false,
+                    drawerStyle: {
+                        backgroundColor: COLORS.lightBeige,
+                        width: 200,
+                    },
+                    drawerLabelStyle: {
+                        color: COLORS.themeColor,
+                        fontFamily: FONT.medium,
+                    },
+                    drawerActiveTintColor: 'gray',
+                }}
+            >
+                <Drawer.Screen name="Main" children={(props) => <HomeStack {...props}/>} options={{ drawerItemStyle: { height: 0 } }}/>
+                <Drawer.Screen name="Profile" children={Profile} />
+                <Drawer.Screen name="Statistics" children={Statistics} />
+                <Drawer.Screen name="Settings" children={Settings} />
+                <Drawer.Screen name="About" children={About} />
+            </Drawer.Navigator>
         </NavigationContainer>
     );
 };

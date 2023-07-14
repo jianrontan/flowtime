@@ -18,10 +18,8 @@ function Break({ route, navigation }) {
         return hours * 3600 + minutes * 60 + seconds;
       };
 
-    const test = timeToSeconds(time);
     let seconds = timeToSeconds(time) * (sliderValue / 60).toFixed(3);
     let msecs = seconds * 1000
-    console.log(test);
     console.log(seconds);
     console.log(msecs);
 
