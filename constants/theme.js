@@ -9,6 +9,7 @@ const COLORS = {
   white: "#F3F4F8",
   lightWhite: "#FAFAFC",
   lightBeige: "#f7e2cb",
+  grayBeige: "#edd8c0",
   darkBeige: "#ffaa69",
   darkThemeColor: "#592615",
   themeColor: "#6e4639",

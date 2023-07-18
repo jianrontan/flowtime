@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
         fontSize: SIZES.large,
         color: COLORS.themeColor,
     },
+    backButton: {
+        paddingLeft: 10,
+    },
 })
 
 export default styles;
