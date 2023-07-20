@@ -14,6 +14,14 @@ const styles = StyleSheet.create({
     backButton: {
         paddingLeft: 10,
     },
+    logoutTO: {
+        paddingTop: SIZES.mediumlarge,
+        paddingLeft: SIZES.mediumlarge,
+    },
+    logoutDrawerText:{
+        color: COLORS.themeColor,
+        fontFamily: FONT.medium,
+    },
 })
 
 export default styles;

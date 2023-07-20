@@ -8,8 +8,8 @@ import { COLORS, icons, images, FONT, SIZES } from '../constants';
 
 function Settings({navigation}) {
   const breakContinue=[{title: 'Continue after break', subTitle:'Stopwatch starts once break ends'}];
+  const breakSave=[{title: 'Save break time', subTitle:'Save break time for later on continue'}];
   const notificationToggle=[{title: 'Notifications', subTitle: 'Notification when break ends'}];
-  const appPreferences=[{title: 'App Preferences', subTitle:'Set your preferences'}];
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.grayBeige }}>
@@ -17,8 +17,8 @@ function Settings({navigation}) {
 
         <View>
             <SettingsComponent settingsOptions={breakContinue} />
+            <SettingsComponent settingsOptions={breakSave} />
             <SettingsComponent settingsOptions={notificationToggle} />
-            <SettingsComponent settingsOptions={appPreferences} />
         </View>
         
       </ScrollView>

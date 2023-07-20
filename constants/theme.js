@@ -14,6 +14,8 @@ const COLORS = {
   darkThemeColor: "#592615",
   themeColor: "#6e4639",
   lightThemeColor: "#69524b",
+  errorRed: "#cf0202",
+  linkBlue: "#4643f7",
 };
 
 const FONT = {
