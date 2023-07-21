@@ -2,21 +2,23 @@ import { useState } from 'react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Switch } from 'react-native-switch';
+import { useDrawerStatus } from '@react-navigation/drawer';
 
 import { COLORS, FONT, SIZES } from '../../../constants';
 
-const SettingsComponent = ({settingsOptions}) => {
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+const SettingsComponent = ({settingsOptions, isEnabled, setIsEnabled}) => {
+    const isDrawerOpen = useDrawerStatus() === 'open';
+
+    const toggleSwitch = () => {
+        if (!isDrawerOpen){
+          setIsEnabled(previousState => !previousState);
+        }
+      }
 
     return (
         <SafeAreaView>
-            <View style={{
-                flex: 1,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-            }}>
-                {settingsOptions.map(({title, subTitle, settingsValue}, index) =>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                {settingsOptions.map(({title, subTitle }, index) =>
                     <TouchableOpacity key={title}>
                         <View style={{
                             paddingHorizontal: 20,
@@ -28,12 +30,14 @@ const SettingsComponent = ({settingsOptions}) => {
                         </View>
                     </TouchableOpacity>
                 )}
-                <View style={{
-                    paddingHorizontal: 20,
-                    paddingTop: 20,
-                    paddingBottom: 20,
-                    justifyContent: 'center',
-                }}>
+                <View 
+                    style={{
+                        paddingHorizontal: 20,
+                        paddingTop: 20,
+                        paddingBottom: 20,
+                        justifyContent: 'center',
+                    }}
+                >
                     <Switch
                         value={isEnabled}
                         onValueChange={toggleSwitch}

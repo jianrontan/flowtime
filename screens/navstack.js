@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, View, Alert, Button, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useCallback } from 'react';
 import { useFonts } from 'expo-font';
@@ -142,10 +143,10 @@ export default function NavStack() {
                 })}
             >
                 <Drawer.Screen name="Main" children={(props) => <HomeStack {...props} />} options={{ drawerItemStyle: { height: 0 }, headerShown: false }} />
-                <Drawer.Screen name="Profile" children={Profile} options={{ headerTitle: 'Profile' }} />
-                <Drawer.Screen name="Statistics" children={Statistics} options={{ headerTitle: 'Statistics' }} />
-                <Drawer.Screen name="Settings" children={Settings} options={{ headerTitle: 'Settings' }} />
-                <Drawer.Screen name="About" children={About} options={{ headerTitle: 'About' }} />
+                <Drawer.Screen name="Profile" component={Profile} options={{ headerTitle: 'Profile' }} />
+                <Drawer.Screen name="Statistics" component={Statistics} options={{ headerTitle: 'Statistics' }} />
+                <Drawer.Screen name="Settings" component={Settings} options={{ headerTitle: 'Settings' }} />
+                <Drawer.Screen name="About" component={About} options={{ headerTitle: 'About' }} />
             </Drawer.Navigator>
         </NavigationContainer>
     );
