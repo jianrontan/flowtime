@@ -1,12 +1,18 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, ScrollView, SafeAreaView } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { getAuth } from 'firebase/auth';
 
 import SettingsComponent2 from '../myComponents/drawer/settings/SettingsComponent2';
 import SettingsComponent from '../myComponents/drawer/settings/SettingsComponent';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { validateLocaleAndSetLanguage } from 'typescript';
 
-function Settings({navigation}) {
+function Settings() {
+  const auth = getAuth();
+
   const [isBreakContinueEnabled, setBreakContinueEnabled] = useState(false);
   const [isBreakSaveEnabled, setBreakSaveEnabled] = useState(false);
   const [isNotificationEnabled, setNotificationEnabled] = useState(false);
@@ -23,8 +29,21 @@ function Settings({navigation}) {
     setNotificationEnabled(value);
   }, []);
 
-  useEffect(() => {
-  }, [isBreakContinueEnabled, isBreakSaveEnabled, isNotificationEnabled]);
+  console.log({ isBreakContinueEnabled, isBreakSaveEnabled, isNotificationEnabled });
+
+  async function updateFirestore() {
+    try {
+      const settingsRef = await addDoc(collection(db, "settings"), {
+        continue: setBreakContinueEnabled(value),
+        save: setBreakSaveEnabled(value),
+        notification: setNotificationEnabled(value),
+        id: auth?.currentUser?.uid,
+      });
+      console.log("Settings Document written with ID: ", settingsRef.id);
+    } catch (e) {
+      console.error("Error adding Settings document: ", e);
+    }
+  }
 
   const breakContinue=[{title: 'Continue after break', subTitle:'Stopwatch starts once break ends'}];
   const breakSave=[{title: 'Save break time', subTitle:'Save break time for later on continue'}];
@@ -38,17 +57,26 @@ function Settings({navigation}) {
           <SettingsComponent
             settingsOptions={breakContinue} 
             isEnabled={isBreakContinueEnabled} 
-            setIsEnabled={setBreakContinueEnabledMemoized} 
+            setIsEnabled={(value) => {
+              setBreakContinueEnabledMemoized(value)
+              updateFirestore();
+            }}
           />
           <SettingsComponent
             settingsOptions={breakSave} 
             isEnabled={isBreakSaveEnabled} 
-            setIsEnabled={setBreakSaveEnabledMemoized} 
+            setIsEnabled={(value) => {
+              setBreakSaveEnabledMemoized(value)
+              updateFirestore();
+            }}
           />
           <SettingsComponent
             settingsOptions={notificationToggle} 
             isEnabled={isNotificationEnabled} 
-            setIsEnabled={setNotificationEnabledMemoized} 
+            setIsEnabled={(value) => {
+              setNotificationEnabledMemoized(value)
+              updateFirestore();
+            }}
           />
         </View>
 

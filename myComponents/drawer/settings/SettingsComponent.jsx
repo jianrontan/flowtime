@@ -7,13 +7,7 @@ import { useDrawerStatus } from '@react-navigation/drawer';
 import { COLORS, FONT, SIZES } from '../../../constants';
 
 const SettingsComponent = ({settingsOptions, isEnabled, setIsEnabled}) => {
-    const isDrawerOpen = useDrawerStatus() === 'open';
-
-    const toggleSwitch = () => {
-        if (!isDrawerOpen){
-          setIsEnabled(previousState => !previousState);
-        }
-      }
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
         <SafeAreaView>
