@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button, NativeModules, TouchableOpacity } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { Stopwatch } from 'react-native-stopwatch-timer';
 
+import { setTotalSavedTime } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import styles from '../myComponents/study/Styles/break.style';
 
 function Watch({ route, navigation }) {
+    const dispatch = useDispatch();
     const { sliderValue, startStopwatch } = route.params;
     const [isStopwatchStart, setIsStopwatchStart] = useState(false);
     const [resetStopwatch, setResetStopwatch] = useState(false);
@@ -35,6 +38,17 @@ function Watch({ route, navigation }) {
             }]
         });
     };
+
+    const onEndPress = () => {
+        dispatch(setTotalSavedTime(0));
+        setIsStopwatchStart(false);
+        navigation.reset({
+            index: 0,
+            routes: [{
+                name: 'Home',
+            }]
+        });
+    };
     
     const options = {
         container: {
@@ -60,6 +74,10 @@ function Watch({ route, navigation }) {
                 <View style={{ flex: 1, padding: SIZES.medium, }}>
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
+                        <Text style={styles.headerText}>Study</Text>
+                    </View>
+
+                    <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
                         <Stopwatch 
                             start={isStopwatchStart}
                             reset={resetStopwatch}
@@ -67,9 +85,16 @@ function Watch({ route, navigation }) {
                             getTime={onTimeUpdate}
                         />
                     </View>
+
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
                         <TouchableOpacity style={styles.container} title="Break" onPress={onBreakPress}>
                             <Text style={styles.text}>Break</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
+                        <TouchableOpacity style={styles.container} title="End" onPress={onEndPress}>
+                            <Text style={styles.text}>End</Text>
                         </TouchableOpacity>
                     </View>
 

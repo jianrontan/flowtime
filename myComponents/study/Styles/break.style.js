@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
         fontSize: SIZES.smallmedium,
         color: COLORS.white,
     },
+    headerText: {
+        fontFamily: FONT.bold,
+        fontSize: SIZES.xLarge,
+        color: COLORS.themeColor,
+    },
 })
 
 export default styles;

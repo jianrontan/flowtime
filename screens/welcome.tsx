@@ -19,9 +19,9 @@ const Welcome: React.FC<NativeStackScreenProps<any>> = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignIn')}>
               <Text style={styles.text}>Sign In</Text>
             </TouchableOpacity>
+          </View>
 
-            <View style={{ padding: SIZES.small }}></View>
-
+          <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
               <Text style={styles.text}>Sign Up</Text>
             </TouchableOpacity>

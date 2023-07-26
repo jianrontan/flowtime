@@ -6,8 +6,12 @@ import { useDrawerStatus } from '@react-navigation/drawer';
 
 import { COLORS, FONT, SIZES } from '../../../constants';
 
-const SettingsComponent = ({settingsOptions, isEnabled, setIsEnabled}) => {
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+const SettingsComponent = ({settingsOptions, isEnabled, setIsEnabled, fieldName, updateFirestore}) => {
+    const toggleSwitch = () => {
+        const newState = !isEnabled;
+        setIsEnabled(newState);
+        updateFirestore(fieldName, newState)
+    }
 
     return (
         <SafeAreaView>
