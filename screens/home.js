@@ -5,7 +5,7 @@ import { collection, addDoc, getDoc, getDocs, updateDoc, doc, setDoc } from 'fir
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
-import { setBreakContinue, setBreakSave, setNotification } from '../redux/actions';
+import { setBreakContinue, setBreakSave, setNotification, setTotalSavedTime } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import { TimeSlider, SessionBtn } from '../myComponents';
 
@@ -48,6 +48,9 @@ function Home({navigation}) {
       }, []);
 
     const [sliderValue, setSliderValue] = useState(10);
+    useEffect(() => {
+        dispatch(setTotalSavedTime(0));
+    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightBeige }}>

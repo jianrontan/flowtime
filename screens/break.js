@@ -1,16 +1,12 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button, TouchableOpacity } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
-import { collection, addDoc, getDoc, updateDoc, doc, setDoc } from 'firebase/firestore';
-import { db } from '../config/firebase';
-import { getAuth } from 'firebase/auth';
 import { Timer } from 'react-native-stopwatch-timer'
-import { CountdownCircleTimer, useCountdown } from 'react-native-countdown-circle-timer';
+import * as Notifications from 'expo-notifications';
 
 import { setTotalSavedTime } from '../redux/actions';
 import styles from '../myComponents/study/Styles/break.style';
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { COLORS, FONT, SIZES } from '../constants';
 
 function Break({ route, navigation }) {
     const dispatch = useDispatch();
@@ -19,7 +15,7 @@ function Break({ route, navigation }) {
     // Sets whether timer is running or not
     const [isTimerStart, setIsTimerStart] = useState(true);
     // Break time to be added
-    const [savedTime, setSavedTime] = useState(0);
+    const savedTimeRef = useRef(0);
     
     // Settings from global store
     const isBreakContinueEnabled = useSelector(state => state.settingsReducer.continueVal);
@@ -27,7 +23,9 @@ function Break({ route, navigation }) {
     const totalSavedTime = useSelector(state => state.timeReducer.savedVal);
     // Variable for whether or not to navigate
     const shouldNavigateRef = useRef(false);
+    // Variable for whether or not to save break time
     const shouldSaveBreakRef = useRef(false);
+
     // Gets latest settings
     useEffect(() => {
         shouldNavigateRef.current = isBreakContinueEnabled;
@@ -60,7 +58,7 @@ function Break({ route, navigation }) {
         const [hours, minutes, seconds] = time.split(':').map(Number);
         breakTime = hours * 3600 + minutes * 60 + seconds;
         breakTimeMsecs = breakTime * 1000;
-        setSavedTime(breakTimeMsecs);
+        savedTimeRef.current = breakTimeMsecs;
     };
 
     // Prevent state from updating during render
@@ -75,10 +73,13 @@ function Break({ route, navigation }) {
     // Duration if saved
     let duration = parseInt(msecs + totalSavedTime);
 
+    console.log("totalSavedTime: ", totalSavedTime)
+    console.log("duration: ", duration)
+
     // When user wants to continue, start timer again go to watch.js
     const onContinuePress = () => {
         if (isBreakSaveEnabled) {
-            dispatch(setTotalSavedTime(savedTime));
+            dispatch(setTotalSavedTime(savedTimeRef.current));
             shouldNavigateRef.current = false;
             setIsTimerStart(false);
             navigation.reset({
