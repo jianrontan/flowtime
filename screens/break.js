@@ -82,7 +82,6 @@ function Break({ route, navigation }) {
         }),
     });
 
-    // Request for permission
     async function registerForPushNotificationsAsync() {
         let token;
         if (Platform.OS === 'android') {
@@ -130,7 +129,7 @@ function Break({ route, navigation }) {
                 title: "Timer Finished!",
                 body: 'Your break time is over.',
             },
-            trigger: null, // duration is in milliseconds
+            trigger: null,
         });
     }
 
