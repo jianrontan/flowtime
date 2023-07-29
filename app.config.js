@@ -23,7 +23,8 @@ export default {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": ["RECEIVE_BOOT_COMPLETE", "VIBRATE", "WAKE_LOCK"]
     },
     "web": {
       "favicon": "./assets/favicon.png"

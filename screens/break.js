@@ -3,7 +3,9 @@ import { View, ScrollView, SafeAreaView, Text, Button, TouchableOpacity } from '
 import { useSelector, useDispatch } from 'react-redux';
 import { Timer } from 'react-native-stopwatch-timer'
 import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
 
+import { allowsNotificationsAsync, requestPermissionsAsync } from '../myComponents/study/breakUtils/notifications';
 import { setTotalSavedTime } from '../redux/actions';
 import styles from '../myComponents/study/Styles/break.style';
 import { COLORS, FONT, SIZES } from '../constants';
@@ -20,11 +22,16 @@ function Break({ route, navigation }) {
     // Settings from global store
     const isBreakContinueEnabled = useSelector(state => state.settingsReducer.continueVal);
     const isBreakSaveEnabled = useSelector(state => state.settingsReducer.saveVal);
+    const isNotificationsEnabled = useSelector(state => state.settingsReducer.notificationVal);
     const totalSavedTime = useSelector(state => state.timeReducer.savedVal);
     // Variable for whether or not to navigate
     const shouldNavigateRef = useRef(false);
     // Variable for whether or not to save break time
     const shouldSaveBreakRef = useRef(false);
+    // Variable for whether or not to show notifications
+    const shouldShowNotifications = useRef(false);
+    // Variable for current state of timer
+    const timerRunningRef = useRef(false);
 
     // Gets latest settings
     useEffect(() => {
@@ -33,19 +40,12 @@ function Break({ route, navigation }) {
     useEffect(() => {
         shouldSaveBreakRef.current = isBreakSaveEnabled;
     }, [isBreakSaveEnabled]);
-
-    // If timer runs out
-    const handleFinish = () => {
-        if (shouldNavigateRef.current && isTimerStart) {
-            navigation.reset({
-                index: 0,
-                routes:[{
-                    name: 'Watch',
-                    params: { sliderValue: sliderValue, startStopwatch: true }
-                }]
-            })
-        }
-    }
+    useEffect(() => {
+        shouldShowNotifications.current = isNotificationsEnabled;
+    }, [isNotificationsEnabled]);
+    useEffect(() => {
+        timerRunningRef.current = isTimerStart;
+    }, [isTimerStart]);
 
     // Converts the study time to seconds
     const timeToSeconds = (time) => {
@@ -73,15 +73,96 @@ function Break({ route, navigation }) {
     // Duration if saved
     let duration = parseInt(msecs + totalSavedTime);
 
-    console.log("totalSavedTime: ", totalSavedTime)
-    console.log("duration: ", duration)
+    // LOCAL NOTIFICATIONS
+    Notifications.setNotificationHandler({
+        handleNotification: async () => ({
+          shouldShowAlert: true,
+          shouldPlaySound: true,
+          shouldSetBadge: true,
+        }),
+    });
+
+    // Request for permission
+    async function registerForPushNotificationsAsync() {
+        let token;
+        if (Platform.OS === 'android') {
+            await Notifications.setNotificationChannelAsync('default', {
+                name: 'default',
+                importance: Notifications.AndroidImportance.MAX,
+                vibrationPattern: [0, 250, 250, 250, 1000],
+                lightColor: '#FF231F7C',
+            });
+        }
+        if (Device.isDevice) {
+            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            let finalStatus = existingStatus;
+            if (existingStatus !== 'granted') {
+                const { status } = await Notifications.requestPermissionsAsync();
+                finalStatus = status;
+            }
+            if (finalStatus !== 'granted') {
+                alert('Failed to get push token for push notification!');
+                return;
+            }
+            token = (await Notifications.getExpoPushTokenAsync()).data;
+            console.log(token);
+        } else {
+            alert('Must use physical device for Push Notifications');
+        }
+      
+        return token;
+    }
+
+    useEffect(() => {
+        async function checkPermissions() {
+            const allowsNotifications = await allowsNotificationsAsync();
+            if (!allowsNotifications) {
+                await requestPermissionsAsync();
+            }
+        }
+        checkPermissions();
+    }, []);
+    
+    // Function to call notifications and its content
+    async function scheduleNotification() {
+        await Notifications.scheduleNotificationAsync({
+            content: {
+                title: "Timer Finished!",
+                body: 'Your break time is over.',
+            },
+            trigger: null, // duration is in milliseconds
+        });
+    }
+
+    // If timer runs out
+    const handleFinish = () => {
+        if (shouldNavigateRef.current && isTimerStart) {
+            if (shouldShowNotifications.current) {
+                scheduleNotification();
+            }
+            dispatch(setTotalSavedTime(0));
+            navigation.reset({
+                index: 0,
+                routes:[{
+                    name: 'Watch',
+                    params: { sliderValue: sliderValue, startStopwatch: true }
+                }]
+            })
+        }
+        if (!shouldNavigateRef.current && timerRunningRef.current) {
+            if (shouldShowNotifications.current) {
+                scheduleNotification();
+            }
+            dispatch(setTotalSavedTime(0));
+        }
+    }
 
     // When user wants to continue, start timer again go to watch.js
     const onContinuePress = () => {
         if (isBreakSaveEnabled) {
             dispatch(setTotalSavedTime(savedTimeRef.current));
             shouldNavigateRef.current = false;
-            setIsTimerStart(false);
+            timerRunningRef.current = false;
             navigation.reset({
                 index: 0,
                 routes:[{
@@ -93,7 +174,7 @@ function Break({ route, navigation }) {
         if (!isBreakSaveEnabled) {
             dispatch(setTotalSavedTime(0));
             shouldNavigateRef.current = false;
-            setIsTimerStart(false);
+            timerRunningRef.current = false;
             navigation.reset({
                 index: 0,
                 routes:[{
@@ -108,7 +189,7 @@ function Break({ route, navigation }) {
     const onEndPress = () => {
         dispatch(setTotalSavedTime(0));
         shouldNavigateRef.current = false;
-        setIsTimerStart(false);
+        timerRunningRef.current = false;
         navigation.reset({
             index: 0,
             routes:[{
@@ -120,9 +201,11 @@ function Break({ route, navigation }) {
     const onPause = () => {
         if (isTimerStart) {
             setIsTimerStart(false);
+            timerRunningRef.current = false;
         }
         else {
             setIsTimerStart(true);
+            timerRunningRef.current = true;
         }
     };
 
