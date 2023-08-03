@@ -9,6 +9,7 @@ import { getAuth, signOut } from 'firebase/auth';
 
 import Profile from './profile';
 import Statistics from './statistics';
+import Tags from './tags';
 import Settings from './settings';
 import About from './about';
 import Logout from './logout';
@@ -145,6 +146,7 @@ export default function NavStack() {
                 <Drawer.Screen name="Main" children={(props) => <HomeStack {...props} />} options={{ drawerItemStyle: { height: 0 }, headerShown: false }} />
                 <Drawer.Screen name="Profile" component={Profile} options={{ headerTitle: 'Profile' }} />
                 <Drawer.Screen name="Statistics" component={Statistics} options={{ headerTitle: 'Statistics' }} />
+                <Drawer.Screen name="Tags" component={Tags} options={{ headerTitle: 'Tags' }} />
                 <Drawer.Screen name="Settings" component={Settings} options={{ headerTitle: 'Settings' }} />
                 <Drawer.Screen name="About" component={About} options={{ headerTitle: 'About' }} />
             </Drawer.Navigator>

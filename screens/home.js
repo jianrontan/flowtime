@@ -5,9 +5,9 @@ import { collection, addDoc, getDoc, getDocs, updateDoc, doc, setDoc } from 'fir
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
-import { setBreakContinue, setBreakSave, setNotification, setTotalSavedTime } from '../redux/actions';
+import { setBreakContinue, setBreakSave, setNotification, setTags, setTotalSavedTime, setSelectedTag } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
-import { TimeSlider, SessionBtn } from '../myComponents';
+import { TimeSlider, SessionBtn, StudyTag } from '../myComponents';
 
 function Home({navigation}) {
     const auth = getAuth();
@@ -24,19 +24,19 @@ function Home({navigation}) {
             if (userDocSnap.exists()) {
                 data = userDocSnap.data();
             } else {
-            await setDoc(userDocRef, {
-                continue: false,
-                save: false,
-                notification: false,
-                id: userId
-            });
-      
-            data = {
-                continue: false,
-                save: false,
-                notification: false,
-                id: userId
-            };
+                await setDoc(userDocRef, {
+                    continue: false,
+                    save: false,
+                    notification: false,
+                    id: userId
+                });
+            
+                data = {
+                    continue: false,
+                    save: false,
+                    notification: false,
+                    id: userId
+                };
             }
     
             dispatch(setBreakContinue(data.continue));
@@ -45,9 +45,41 @@ function Home({navigation}) {
     
         }
         getOrCreateFirestoreData();
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        async function getOrCreateFirestoreData() {
+            const userId = auth.currentUser.uid;
+            const userDocRef = doc(db, 'tags', userId);
+            const userDocSnap = await getDoc(userDocRef);
+
+            let data = {};
+
+            if (userDocSnap.exists()) {
+                data = userDocSnap.data();
+            } else {
+                await setDoc(userDocRef, {
+                    tag: ["Study", "Work", "Reading"],
+                    selectedTag: "Study",
+                    id: userId
+                });
+
+                data = {
+                    tag: ["Study", "Work", "Reading"],
+                    selectedTag: "Study",
+                    id: userId
+                }
+            }
+
+            dispatch(setTags(data.tag));
+            dispatch(setSelectedTag(data.selectedTag));
+
+        }
+        getOrCreateFirestoreData();
+    }, []);
 
     const [sliderValue, setSliderValue] = useState(10);
+
     useEffect(() => {
         dispatch(setTotalSavedTime(0));
     }, []);
@@ -70,6 +102,9 @@ function Home({navigation}) {
                     </View>
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
                         <TimeSlider sliderValue={sliderValue} setSliderValue={setSliderValue} />
+                    </View>
+                    <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
+                        <StudyTag inactive={false}/>
                     </View>
 
                 </View>

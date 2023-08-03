@@ -5,6 +5,7 @@ import { Timer } from 'react-native-stopwatch-timer'
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 
+import { StudyTag } from '../myComponents';
 import { allowsNotificationsAsync, requestPermissionsAsync } from '../myComponents/study/breakUtils/notifications';
 import { setTotalSavedTime } from '../redux/actions';
 import styles from '../myComponents/study/Styles/break.style';
@@ -267,6 +268,10 @@ function Break({ route, navigation }) {
                         <TouchableOpacity style={styles.container} title="Pause" onPress={onPause}>
                             <Text style={styles.text}>Pause</Text>
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
+                        <StudyTag inactive={true}/>
                     </View>
 
                 </View>

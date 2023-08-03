@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { View, ScrollView, SafeAreaView } from 'react-native';
+import { View, ScrollView, SafeAreaView, FlatList } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { setBreakContinue, setBreakSave, setNotification } from '../redux/actions';
@@ -17,7 +17,6 @@ function Settings() {
   const [isBreakContinueEnabled, setBreakContinueEnabled] = useState(false);
   const [isBreakSaveEnabled, setBreakSaveEnabled] = useState(false);
   const [isNotificationEnabled, setNotificationEnabled] = useState(false);
-
 
   async function getOrCreateFirestoreData() {
     const userId = auth.currentUser.uid;

@@ -1,7 +1,9 @@
 export const SET_BREAK_CONTINUE = 'SET_BREAK_CONTINUE';
 export const SET_BREAK_SAVE = 'SET_BREAK_SAVE';
 export const SET_NOTIFICATION = 'SET_NOTIFICATION';
-export const SET_TOTAL_BREAK_TIME = 'SET_TOTAL_BREAK_TIME'
+export const SET_TOTAL_BREAK_TIME = 'SET_TOTAL_BREAK_TIME';
+export const SET_TAGS = 'SET_TAGS';
+export const SET_SELECTED_TAG = 'SET_SELECTED_TAG'
 
 export const setBreakContinue = continueVal => {
   return dispatch => {
@@ -38,3 +40,21 @@ export const setTotalSavedTime = savedVal => {
     });
   };
 };
+
+export const setTags = tagArr => {
+  return dispatch => {
+    dispatch({
+      type: SET_TAGS,
+      payload: tagArr,
+    })
+  }
+}
+
+export const setSelectedTag = selectedTag => {
+  return dispatch => {
+    dispatch({
+      type: SET_SELECTED_TAG,
+      payload: selectedTag,
+    })
+  }
+}

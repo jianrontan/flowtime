@@ -3,6 +3,7 @@ import { View, ScrollView, SafeAreaView, Text, Button, NativeModules, TouchableO
 import { useDispatch } from 'react-redux';
 import { Stopwatch } from 'react-native-stopwatch-timer';
 
+import { StudyTag } from '../myComponents';
 import { setTotalSavedTime } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import styles from '../myComponents/study/Styles/break.style';
@@ -96,6 +97,10 @@ function Watch({ route, navigation }) {
                         <TouchableOpacity style={styles.container} title="End" onPress={onEndPress}>
                             <Text style={styles.text}>End</Text>
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
+                        <StudyTag inactive={true}/>
                     </View>
 
                 </View>

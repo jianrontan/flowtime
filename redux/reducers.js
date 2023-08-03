@@ -1,13 +1,17 @@
-import { SET_BREAK_CONTINUE, SET_BREAK_SAVE, SET_NOTIFICATION, SET_TOTAL_BREAK_TIME } from "./actions";
+import { SET_BREAK_CONTINUE, SET_BREAK_SAVE, SET_NOTIFICATION, SET_TOTAL_BREAK_TIME, SET_TAGS, SET_SELECTED_TAG } from "./actions";
 
 const settingsState = {
   continueVal: false,
   saveVal: false,
   notificationVal: false,
-  id: ''
+  id: '',
 }
 const totalSavedTime = {
   breakTime: 0,
+}
+const tagsArray = {
+  tagArr: ["Study", "Work", "Reading"],
+  selectedTag: null,
 }
 
 export function settingsReducer(state = settingsState, action) {
@@ -39,6 +43,25 @@ export function timeReducer(state = totalSavedTime, action) {
         ...state,
         savedVal: action.payload
       };
+    default:
+      return state;
+  }
+}
+
+export function tagsReducer(state = tagsArray, action) {
+  switch(action.type) {
+    case SET_TAGS:
+      return {
+        ...state,
+        tagArr: action.payload ?? [],
+      };
+    }
+  switch(action.type) {
+    case SET_SELECTED_TAG:
+      return {
+        ...state,
+        selectedTag: action.payload,
+      }
     default:
       return state;
   }
