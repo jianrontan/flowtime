@@ -271,7 +271,7 @@ function Break({ route, navigation }) {
                     </View>
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
-                        <StudyTag inactive={true}/>
+                        <StudyTag inactive={false}/>
                     </View>
 
                 </View>

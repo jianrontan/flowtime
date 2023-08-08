@@ -1,19 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, SafeAreaView, Text, Button, NativeModules, TouchableOpacity } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { Stopwatch } from 'react-native-stopwatch-timer';
+import { useSelector, useDispatch } from 'react-redux';
+import { collection, addDoc, getDoc, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { getAuth } from 'firebase/auth';
 
+import { setSelectedTag } from '../redux/actions';
 import { StudyTag } from '../myComponents';
 import { setTotalSavedTime } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import styles from '../myComponents/study/Styles/break.style';
+import { current } from '@reduxjs/toolkit';
 
 function Watch({ route, navigation }) {
+    const auth = getAuth();
     const dispatch = useDispatch();
     const { sliderValue, startStopwatch } = route.params;
     const [isStopwatchStart, setIsStopwatchStart] = useState(false);
     const [resetStopwatch, setResetStopwatch] = useState(false);
     const [time, setTime] = useState("00:00:00");
+
+    const tags = useSelector(state => state.tagsReducer.tagArr);
+    const [selectedTag, setSelectedTagState] = useState("")
 
     const onTimeUpdate = useCallback((time) => {
         setTimeout(() => {
@@ -28,8 +37,48 @@ function Watch({ route, navigation }) {
             }, 0);
         }
     }, [startStopwatch]);
+
+    useEffect(() => {
+        async function getLastSelectedTag() {
+            const userId = auth.currentUser.uid;
+            const userDocRef = doc(db, 'tags', userId);
     
-    const onBreakPress = () => {
+            try {
+                const userDocSnap = await getDoc(userDocRef);
+                if(userDocSnap.exists()) {
+                    const data = userDocSnap.data();
+                    if (data.selectedTag && tags.includes(data.selectedTag)) {
+                        setSelectedTagState(data.selectedTag);
+                        dispatch(setSelectedTag(data.selectedTag));
+                    } else if (tags.length > 0) {
+                        setSelectedTagState(tags[0]);
+                    dispatch(setSelectedTag(tags[0]));
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading tags: ", e);
+            }
+        }
+    
+        getLastSelectedTag();
+    
+    }, [tags]);
+
+    async function createFirestoreData() {
+        const userId = auth.currentUser.uid;
+        let msSinceEpoch = new Date().getTime();
+        let timeFormatted = new Date();
+        const docRef = await addDoc(collection(db, "statistics"), {
+            ms: msSinceEpoch,
+            formatted: timeFormatted,
+            length: time,
+            tagged: selectedTag,
+            id: userId, 
+        })
+    }
+    
+    const onBreakPress = async () => {
+        await createFirestoreData();
         setIsStopwatchStart(false);
         navigation.reset({
             index: 0,
@@ -40,7 +89,8 @@ function Watch({ route, navigation }) {
         });
     };
 
-    const onEndPress = () => {
+    const onEndPress = async () => {
+        await createFirestoreData();
         dispatch(setTotalSavedTime(0));
         setIsStopwatchStart(false);
         navigation.reset({
@@ -75,7 +125,7 @@ function Watch({ route, navigation }) {
                 <View style={{ flex: 1, padding: SIZES.medium, }}>
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
-                        <Text style={styles.headerText}>Study</Text>
+                        <Text style={styles.headerText}>Focus Time</Text>
                     </View>
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
