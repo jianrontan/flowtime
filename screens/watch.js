@@ -21,6 +21,14 @@ function Watch({ route, navigation }) {
     const [resetStopwatch, setResetStopwatch] = useState(false);
     const [time, setTime] = useState("00:00:00");
 
+    const [msSinceEpoch, setMsSinceEpoch] = useState(null);
+    const [timeFormatted, setTimeFormatted] = useState(null);
+
+    useEffect(() => {
+        setMsSinceEpoch(new Date().getTime());
+        setTimeFormatted(new Date());
+    }, []);
+
     const tags = useSelector(state => state.tagsReducer.tagArr);
     const [selectedTag, setSelectedTagState] = useState("")
 
@@ -66,8 +74,6 @@ function Watch({ route, navigation }) {
 
     async function createFirestoreData() {
         const userId = auth.currentUser.uid;
-        let msSinceEpoch = new Date().getTime();
-        let timeFormatted = new Date();
         const docRef = await addDoc(collection(db, "statistics"), {
             ms: msSinceEpoch,
             formatted: timeFormatted,
@@ -125,7 +131,7 @@ function Watch({ route, navigation }) {
                 <View style={{ flex: 1, padding: SIZES.medium, }}>
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
-                        <Text style={styles.headerText}>Focus Time</Text>
+                        <Text style={styles.headerText}>Focus time</Text>
                     </View>
 
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
