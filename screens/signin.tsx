@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { Input, Button } from 'react-native-elements';
@@ -7,7 +7,6 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import styles from '../myComponents/welcome/welcome.style';
 import { COLORS, SIZES } from '../constants';
-import { set } from 'react-native-reanimated';
 
 const auth = getAuth();
 

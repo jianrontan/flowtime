@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-native-community/slider": "^4.4.2",
+    "@react-native-google-signin/google-signin": "^10.0.1",
     "@react-navigation/drawer": "^6.6.3",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",

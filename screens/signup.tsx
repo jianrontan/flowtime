@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView, Alert } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
+const { GOOGLE_WEB_CLIENT_ID } = require('react-native-dotenv');
 import styles from '../myComponents/welcome/welcome.style';
 import { COLORS, SIZES } from '../constants';
-import { set } from 'react-native-reanimated';
 
 const auth = getAuth();
+GoogleSignin.configure({
+  webClientId: GOOGLE_WEB_CLIENT_ID,
+});
 
 const SignUp: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
   const [value, setValue] = useState({

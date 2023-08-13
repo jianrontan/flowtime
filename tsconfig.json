@@ -1,4 +1,9 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "typeRoots": ["./src/types", "./node_modules/@types"]
+  },
+  "extends": "expo/tsconfig.base",
+  "include": ["types/env.d.ts"]
 }
