@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { View, ScrollView, SafeAreaView, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import CalendarPicker from  'react-native-calendar-picker';
-import { StackedBarChart } from 'react-native-chart-kit';
+import StackedBarChart from 'react-native-chart-kit';
 import { db } from '../config/firebase';
 import { collection, query, where, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -103,8 +103,8 @@ function Statistics() {
   // QUERY FOR TOTAL TIME //
   async function fetchTotalData() {
     const q = query(collection(db, "statistics"),
-      where("id", "==", userId));
-    
+      where("id", "==", userId)
+    );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let groups = {};
       querySnapshot.forEach((doc) => {
@@ -214,7 +214,7 @@ function Statistics() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightBeige }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.grayBeige }}>
       <ScrollView showsVerticalScrollIndicator={false}>
 
         <View style={{ flex: 1, padding: SIZES.medium }}>
@@ -310,7 +310,7 @@ function Statistics() {
             })}
           </View>
         </View>
-
+{/* 
         <View>
           <TouchableOpacity onPress={onPreviousPress}>
             <Text>Previous</Text>
@@ -321,7 +321,7 @@ function Statistics() {
           </TouchableOpacity>
         </View>
 
-        {/* <View>
+        <View>
           <StackedBarChart
             data={data}
             width={SIZES.width}

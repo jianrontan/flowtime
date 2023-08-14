@@ -1,6 +1,7 @@
 export const SET_BREAK_CONTINUE = 'SET_BREAK_CONTINUE';
 export const SET_BREAK_SAVE = 'SET_BREAK_SAVE';
 export const SET_NOTIFICATION = 'SET_NOTIFICATION';
+export const SET_SLIDER = 'SET_SLIDER';
 export const SET_TOTAL_BREAK_TIME = 'SET_TOTAL_BREAK_TIME';
 export const SET_TAGS = 'SET_TAGS';
 export const SET_SELECTED_TAG = 'SET_SELECTED_TAG'
@@ -28,6 +29,15 @@ export const setNotification = notificationVal => {
     dispatch({
       type: SET_NOTIFICATION,
       payload: notificationVal,
+    });
+  };
+};
+
+export const setSlider = sliderVal => {
+  return dispatch => {
+    dispatch({
+      type: SET_SLIDER,
+      payload: sliderVal,
     });
   };
 };

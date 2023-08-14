@@ -1,9 +1,10 @@
-import { SET_BREAK_CONTINUE, SET_BREAK_SAVE, SET_NOTIFICATION, SET_TOTAL_BREAK_TIME, SET_TAGS, SET_SELECTED_TAG } from "./actions";
+import { SET_BREAK_CONTINUE, SET_BREAK_SAVE, SET_NOTIFICATION, SET_SLIDER, SET_TOTAL_BREAK_TIME, SET_TAGS, SET_SELECTED_TAG } from "./actions";
 
 const settingsState = {
   continueVal: false,
   saveVal: false,
   notificationVal: false,
+  sliderVal: 10,
   id: '',
 }
 const totalSavedTime = {
@@ -30,6 +31,11 @@ export function settingsReducer(state = settingsState, action) {
       return {
         ...state,
         notificationVal: action.payload
+      };
+    case SET_SLIDER:
+      return {
+        ...state,
+        sliderVal: action.payload
       };
     default:
       return state;

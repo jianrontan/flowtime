@@ -63,6 +63,7 @@ const SettingsComponent = ({settingsOptions, isEnabled, setIsEnabled, fieldName,
                     />
                 </View>
             </View>
+            <View style={{ borderBottomColor: COLORS.sepGrayBeige, borderBottomWidth: 1 }}></View>
         </SafeAreaView>
     );
 };

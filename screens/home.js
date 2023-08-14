@@ -5,7 +5,7 @@ import { collection, addDoc, getDoc, getDocs, updateDoc, doc, setDoc } from 'fir
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
-import { setBreakContinue, setBreakSave, setNotification, setTags, setTotalSavedTime, setSelectedTag } from '../redux/actions';
+import { setBreakContinue, setBreakSave, setNotification, setSlider, setTags, setTotalSavedTime, setSelectedTag } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import { TimeSlider, SessionBtn, StudyTag } from '../myComponents';
 
@@ -28,6 +28,7 @@ function Home({navigation}) {
                     continue: false,
                     save: false,
                     notification: false,
+                    slider: 10,
                     id: userId
                 });
             
@@ -35,6 +36,7 @@ function Home({navigation}) {
                     continue: false,
                     save: false,
                     notification: false,
+                    slider: 10,
                     id: userId
                 };
             }
@@ -42,6 +44,7 @@ function Home({navigation}) {
             dispatch(setBreakContinue(data.continue));
             dispatch(setBreakSave(data.save));
             dispatch(setNotification(data.notification));
+            dispatch(setSlider(data.slider));
     
         }
         getOrCreateFirestoreData();
@@ -78,11 +81,14 @@ function Home({navigation}) {
         getOrCreateFirestoreData();
     }, []);
 
-    const [sliderValue, setSliderValue] = useState(10);
-
-    useEffect(() => {
-        dispatch(setTotalSavedTime(0));
-    }, []);
+    const sliderValue = useSelector((state) => state.settingsReducer.sliderVal);
+    async function updateFirestore(newValue) {
+        const userId = auth.currentUser.uid;
+        const userDocRef = doc(db, 'settings', userId);
+        await updateDoc(userDocRef, {
+            slider: newValue,
+        });
+    }
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightBeige }}>
@@ -101,7 +107,13 @@ function Home({navigation}) {
                         }}/>
                     </View>
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
-                        <TimeSlider sliderValue={sliderValue} setSliderValue={setSliderValue} />
+                        <TimeSlider
+                            sliderValue={sliderValue}
+                            setSliderValue={(value) => {
+                                dispatch(setSlider(value));
+                                updateFirestore(value);
+                            }} 
+                        />
                     </View>
                     <View style={{ alignItems: 'center', padding: SIZES.xLarge }}>
                         <StudyTag inactive={false}/>

@@ -7,7 +7,7 @@ import { COLORS, icons, images, FONT, SIZES } from '../constants';
 function About() {
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightBeige }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.grayBeige }}>
       <ScrollView showsVerticalScrollIndicator={false}>
 
         <View style={{ flex: 1, padding: SIZES.medium }}>

@@ -107,7 +107,7 @@ function Tags() {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightBeige }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.grayBeige }}>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={tagStyles.inputView}>

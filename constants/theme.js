@@ -16,6 +16,7 @@ const COLORS = {
   themeColor: "#6e4639",
   lightThemeColor: "#69524b",
   errorRed: "#cf0202",
+  brownRed: "#b50202",
   linkBlue: "#4643f7",
 };
 

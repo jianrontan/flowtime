@@ -7,7 +7,6 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from '
 
 import styles from '../myComponents/welcome/welcome.style';
 import { COLORS, SIZES } from '../constants';
-import { set } from 'react-native-reanimated';
 
 const auth = getAuth();
 
