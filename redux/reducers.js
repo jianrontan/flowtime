@@ -8,7 +8,7 @@ const settingsState = {
   id: '',
 }
 const totalSavedTime = {
-  breakTime: 0,
+  savedVal: 0,
 }
 const tagsArray = {
   tagArr: ["Study", "Work", "Reading"],
