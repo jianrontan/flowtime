@@ -105,6 +105,7 @@ const SignUp: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
               placeholder='Email'
               value={value.email}
               onChangeText={(text) => setValue({ ...value, email: text })}
+              autoCapitalize='none'
             />
 
             <Input
@@ -113,6 +114,7 @@ const SignUp: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
               value={value.password}
               onChangeText={(text) => setValue({ ...value, password: text })}
               secureTextEntry={true}
+              autoCapitalize='none'
             />
 
             <Input
@@ -121,6 +123,7 @@ const SignUp: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
               value={value.cfmPassword}
               onChangeText={(text) => setValue({ ...value, cfmPassword: text })}
               secureTextEntry={true}
+              autoCapitalize='none'
             />
 
             <View style={{ padding: 8 }}>

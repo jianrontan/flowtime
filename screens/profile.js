@@ -85,8 +85,8 @@ function Profile() {
     try {
       await updateEmail(auth.currentUser, newEmail);
     } catch(error) {
-        Alert.alert('Error', error.message);
-        return;
+      Alert.alert('Error', error.message);
+      return;
     }
     try {
       await sendEmailVerification(auth.currentUser);
@@ -197,22 +197,22 @@ function Profile() {
 
         <Dialog.Container visible={emailDialogVisible}>
           <Dialog.Title>Email update</Dialog.Title>
-          <Dialog.Input onChangeText={(password) => setVerifyPassword(password)} placeholder="Password" secureTextEntry={true}></Dialog.Input>
-          <Dialog.Input onChangeText={(email) => setNewEmail(email)} placeholder="New Email"></Dialog.Input>
+          <Dialog.Input onChangeText={(password) => setVerifyPassword(password)} placeholder="Password" secureTextEntry={true} autoCapitalize='none'></Dialog.Input>
+          <Dialog.Input onChangeText={(email) => setNewEmail(email)} placeholder="New Email" autoCapitalize='none'></Dialog.Input>
           <Dialog.Button label="Cancel" onPress={() => setEmailDialogVisible(false)}/>
           <Dialog.Button label="Update" onPress={handleUpdateEmail}/>
         </Dialog.Container>
 
         <Dialog.Container visible={passwordDialogVisible}>
           <Dialog.Title>Forgot Password</Dialog.Title>
-          <Dialog.Input onChangeText={(email) => setResetEmail(email)} placeholder="Enter your email"></Dialog.Input>
+          <Dialog.Input onChangeText={(email) => setResetEmail(email)} placeholder="Enter your email" autoCapitalize='none'></Dialog.Input>
           <Dialog.Button label="Cancel" onPress={() => setPasswordDialogVisible(false)}/>
           <Dialog.Button label="Reset" onPress={handleForgotPassword}/>
         </Dialog.Container>
 
         <Dialog.Container visible={deleteDialogVisible}>
           <Dialog.Title>Delete Account</Dialog.Title>
-          <Dialog.Input onChangeText={(password) => setVerifyDeletePassword(password)} placeholder="Password"></Dialog.Input>
+          <Dialog.Input onChangeText={(password) => setVerifyDeletePassword(password)} placeholder="Password" secureTextEntry={true} autoCapitalize='none'></Dialog.Input>
           <Dialog.Button label="Cancel" onPress={() => setDeleteDialogVisible(false)}/>
           <Dialog.Button label="Delete" onPress={handleDeleteAccount}/>
         </Dialog.Container>

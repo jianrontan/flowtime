@@ -53,6 +53,7 @@ const SignIn = ({navigation}) => {
               placeholder='Email'
               value={value.email}
               onChangeText={(text) => setValue({ ...value, email: text })}
+              autoCapitalize='none'
             />
 
             <Input
@@ -61,6 +62,7 @@ const SignIn = ({navigation}) => {
               value={value.password}
               onChangeText={(text) => setValue({ ...value, password: text })}
               secureTextEntry={true}
+              autoCapitalize='none'
             />
 
             <View style={{ paddingLeft: 8, paddingTop: SIZES.xSmall, paddingBottom: SIZES.xLarge }}>
