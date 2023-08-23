@@ -5,16 +5,15 @@ import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 import Profile from './profile';
 import Statistics from './statistics';
 import Tags from './tags';
 import Settings from './settings';
 import About from './about';
-import Logout from './logout';
 import HomeStack from './homestack';
-import styles from '../myComponents/common/header/header/header.style';
+import styles from '../myComponents/common/header/header.style';
 import { ScreenHeaderBtn } from '../myComponents';
 import { COLORS, FONT, icons } from '../constants';
 
@@ -32,14 +31,14 @@ export default function NavStack() {
     useEffect(() => {
         async function prepare() {
             try {
-                await SplashScreen.preventAutoHideAsync();
+                SplashScreen.preventAutoHideAsync();
             } catch (error) {
                 console.warn(error);
             } finally {
                 setAppIsReady(true);
 
                 if (fontsLoaded) {
-                    await SplashScreen.hideAsync();
+                    SplashScreen.hideAsync();
                 }
             }
         }
@@ -48,7 +47,7 @@ export default function NavStack() {
 
     const onLayoutRootView = useCallback(async () => {
         if (appIsReady && fontsLoaded) {
-            await SplashScreen.hideAsync();
+            SplashScreen.hideAsync();
         }
     }, [appIsReady, fontsLoaded]);
 
@@ -60,42 +59,42 @@ export default function NavStack() {
 
     const logoutConfirmation = async () => {
         try {
-          await auth.signOut();
-          console.log('User signed out!');
+            await auth.signOut();
+            console.log('User signed out!');
         } catch (error) {
-          console.error('Error signing out: ', error);
+            console.error('Error signing out: ', error);
         }
     };
 
     function CustomDrawerContent(props) {
         return (
-          <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
-            <TouchableOpacity
-                style={styles.logoutTO}
-                title="Logout"
-                onPress={() => 
-                Alert.alert(
-                  'Logout',
-                  'Are you sure you want to logout?',
-                  [
-                    {
-                      text: 'Cancel',
-                      style: 'cancel', 
-                    },
-                    {
-                      text: 'OK',
-                      onPress: logoutConfirmation,
-                    },
-                  ],
-                )
-              }
-            >
-                <Text style={styles.logoutDrawerText}>Logout</Text>
-            </TouchableOpacity>
-          </DrawerContentScrollView>
+            <DrawerContentScrollView {...props}>
+                <DrawerItemList {...props} />
+                <TouchableOpacity
+                    style={styles.logoutTO}
+                    title="Logout"
+                    onPress={() =>
+                        Alert.alert(
+                            'Logout',
+                            'Are you sure you want to logout?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    style: 'cancel',
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: logoutConfirmation,
+                                },
+                            ],
+                        )
+                    }
+                >
+                    <Text style={styles.logoutDrawerText}>Logout</Text>
+                </TouchableOpacity>
+            </DrawerContentScrollView>
         );
-      }
+    }
 
     return (
         <NavigationContainer onLayout={onLayoutRootView}>

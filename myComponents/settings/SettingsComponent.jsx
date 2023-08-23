@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Switch } from 'react-native-switch';
-import { useDrawerStatus } from '@react-navigation/drawer';
 
-import { COLORS, FONT, SIZES } from '../../../constants';
+import { COLORS, FONT, SIZES } from '../../constants';
 
 const SettingsComponent = ({settingsOptions, isEnabled, setIsEnabled, fieldName, updateFirestore}) => {
     const toggleSwitch = () => {

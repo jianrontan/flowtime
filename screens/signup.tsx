@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView, Alert } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import { Text, View, TouchableOpacity, SafeAreaView, ScrollView, Alert } from 'react-native';
+import { Input } from 'react-native-elements';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 

@@ -5,7 +5,7 @@ import Home from './home';
 import Watch from './watch';
 import Break from './break';
 import { ScreenHeaderBtn } from "../myComponents";
-import styles from '../myComponents/common/header/header/header.style';
+import styles from '../myComponents/common/header/header.style';
 import { COLORS, icons } from '../constants';
 
 const Stack = createNativeStackNavigator();

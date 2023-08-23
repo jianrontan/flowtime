@@ -1,14 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { View, ScrollView, SafeAreaView, FlatList } from 'react-native';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView, SafeAreaView } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { setBreakContinue, setBreakSave, setNotification } from '../redux/actions';
-import { collection, addDoc, getDoc, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { getDoc, updateDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
-import SettingsComponent from '../myComponents/drawer/settings/SettingsComponent';
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import SettingsComponent from '../myComponents/settings/SettingsComponent';
+import { COLORS } from '../constants';
 
 function Settings() {
   const auth = getAuth();
@@ -59,18 +58,18 @@ function Settings() {
     await updateDoc(userDocRef, { [fieldName]: value });
   }
 
-  const breakContinue=[{title: 'Continue after break', subTitle:'Stopwatch starts once break ends'}];
-  const breakSave=[{title: 'Save break time', subTitle:'Save break time for later (on continue)'}];
-  const notificationToggle=[{title: 'Notifications', subTitle: 'Notification when break ends'}];
+  const breakContinue = [{ title: 'Continue after break', subTitle: 'Stopwatch starts once break ends' }];
+  const breakSave = [{ title: 'Save break time', subTitle: 'Save break time for later (on continue)' }];
+  const notificationToggle = [{ title: 'Notifications', subTitle: 'Notification when break ends' }];
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.grayBeige }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        
+
         <View>
           <SettingsComponent
-            settingsOptions={breakContinue} 
-            isEnabled={isBreakContinueEnabled} 
+            settingsOptions={breakContinue}
+            isEnabled={isBreakContinueEnabled}
             setIsEnabled={(value) => {
               setBreakContinueEnabled(value);
               dispatch(setBreakContinue(value));
@@ -80,8 +79,8 @@ function Settings() {
             updateFirestore={updateFirestore}
           />
           <SettingsComponent
-            settingsOptions={breakSave} 
-            isEnabled={isBreakSaveEnabled} 
+            settingsOptions={breakSave}
+            isEnabled={isBreakSaveEnabled}
             setIsEnabled={(value) => {
               setBreakSaveEnabled(value);
               dispatch(setBreakSave(value));
@@ -91,15 +90,15 @@ function Settings() {
             updateFirestore={updateFirestore}
           />
           <SettingsComponent
-            settingsOptions={notificationToggle} 
-            isEnabled={isNotificationEnabled} 
+            settingsOptions={notificationToggle}
+            isEnabled={isNotificationEnabled}
             setIsEnabled={(value) => {
               setNotificationEnabled(value);
               dispatch(setNotification(value));
               updateFirestore('notification', value)
             }}
             fieldName='notification'
-            updateFirestore={updateFirestore}          
+            updateFirestore={updateFirestore}
           />
         </View>
 

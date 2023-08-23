@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { COLORS, FONT, SIZES } from "../../../../constants";
+import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         paddingTop: SIZES.mediumlarge,
         paddingLeft: SIZES.mediumlarge,
     },
-    logoutDrawerText:{
+    logoutDrawerText: {
         color: COLORS.themeColor,
         fontFamily: FONT.medium,
     },

@@ -10,7 +10,7 @@ import Welcome from '../screens/welcome';
 import SignUp from '../screens/signup';
 import SignIn from '../screens/signin';
 import ForgotPassword from '../screens/forgotpassword';
-import styles from '../myComponents/common/header/header/header.style';
+import styles from '../myComponents/common/header/header.style';
 import { COLORS } from '../constants';
 
 const Stack = createNativeStackNavigator();

@@ -2,16 +2,16 @@ import 'dotenv/config';
 
 export default {
   "expo": {
-    "name": "App",
+    "name": "Flowtime",
     "slug": "App",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/flowtime-icon-final.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/flowtime-icon-final.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#865946"
     },
     "assetBundlePatterns": [
       "assets/fonts/*"
@@ -20,22 +20,21 @@ export default {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.ronbutanflowtime",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/flowtime-icon-final.png",
+        "backgroundColor": "#f7e2cb"
       },
+      "primaryColor": "f7e2cb",
       "permissions": ["RECEIVE_BOOT_COMPLETE", "VIBRATE", "WAKE_LOCK"]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/flowtime-icon-final.png"
     },
     "extra": {
-      firebaseApiKey: process.env.FIREBASE_API_KEY,
-      firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,
-      firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
-      firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-      firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-      firebaseAppId: process.env.FIREBASE_APP_ID
+      "eas": {
+        "projectId": "757fe2a6-3879-4098-98bb-cb0e8445f755"
+      }
     }
   }
 }

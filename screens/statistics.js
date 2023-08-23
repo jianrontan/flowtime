@@ -1,12 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
-import { View, ScrollView, SafeAreaView, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, ScrollView, SafeAreaView, Text } from 'react-native';
 import CalendarPicker from  'react-native-calendar-picker';
 import StackedBarChart from 'react-native-chart-kit';
 import { db } from '../config/firebase';
 import { collection, query, where, getDocs, Timestamp, onSnapshot } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { COLORS, FONT, SIZES } from '../constants';
 
 function Statistics() {
   const auth = getAuth();

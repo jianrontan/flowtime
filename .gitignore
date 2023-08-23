@@ -9,9 +9,12 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+/README.md
 
 # machine specific configuration files
 .env
+/secrets.json
+/firebaseConfig.js
 
 # macOS
 .DS_Store
