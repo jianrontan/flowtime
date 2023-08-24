@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Alert, Button, TouchableOpacity } from 'react-native';
+import { Text, View, Alert, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
