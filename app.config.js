@@ -35,6 +35,9 @@ export default {
       "eas": {
         "projectId": "757fe2a6-3879-4098-98bb-cb0e8445f755"
       }
-    }
+    },
+    "plugins": [
+      "expo-community-flipper"
+    ]
   }
 }
