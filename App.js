@@ -1,6 +1,5 @@
 import React from 'react';
 import './config/firebase';
-import 'react-native-gesture-handler'
 import { ThemeProvider } from '@react-navigation/native';
 import RootNavigation from './navigation';
 import { Provider } from 'react-redux';

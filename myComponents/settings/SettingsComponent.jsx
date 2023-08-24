@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import { Switch } from 'react-native-switch';
 
 import { COLORS, FONT, SIZES } from '../../constants';

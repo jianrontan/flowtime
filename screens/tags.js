@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { View, SafeAreaView, TextInput, Text, FlatList, Alert } from 'react-native';
+import { View, SafeAreaView, TextInput, Text, FlatList, Alert, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getDoc, updateDoc, doc, setDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
-import { styles, tagStyles } from '../myComponents';
+import { tagStyles } from '../myComponents';
 import { setTags } from '../redux/actions';
 import { COLORS, SIZES } from '../constants';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function Tags() {
     const auth = getAuth();
