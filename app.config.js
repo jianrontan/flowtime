@@ -25,6 +25,7 @@ export default {
         "foregroundImage": "./assets/flowtime-icon-final.png",
         "backgroundColor": "#f7e2cb"
       },
+      "googleServicesFile": "./google-services.json",
       "primaryColor": "f7e2cb",
       "permissions": ["RECEIVE_BOOT_COMPLETE", "VIBRATE", "WAKE_LOCK"]
     },
