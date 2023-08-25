@@ -3,7 +3,6 @@ import { View, ScrollView, SafeAreaView, Text, Button, TouchableOpacity } from '
 import { useSelector, useDispatch } from 'react-redux';
 import { Timer } from 'react-native-stopwatch-timer'
 import * as Notifications from 'expo-notifications';
-import * as Device from 'expo-device';
 
 import { StudyTag } from '../myComponents';
 import { allowsNotificationsAsync, requestPermissionsAsync } from '../myComponents/study/breakUtils/notifications';

@@ -11,7 +11,7 @@ export default function RootNavigation() {
 
     return (
         <>
-            <StatusBar backgroundColor={COLORS.lightbeige} />
+            <StatusBar style='dark' backgroundColor={COLORS.lightbeige} />
             {user ? <NavStack /> : <AuthStack />}
         </>
     );

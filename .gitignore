@@ -15,6 +15,7 @@ web-build/
 .env
 /secrets.json
 /firebaseConfig.js
+/google-services.json
 
 # macOS
 .DS_Store
