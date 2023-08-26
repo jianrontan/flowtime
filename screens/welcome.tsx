@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import styles from '../myComponents/welcome/welcome.style';

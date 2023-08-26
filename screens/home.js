@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { View, ScrollView, SafeAreaView, Text, Button } from 'react-native';
+import { useEffect } from 'react';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { collection, addDoc, getDoc, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { getDoc, updateDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
 import { setBreakContinue, setBreakSave, setNotification, setSlider, setTags, setTotalSavedTime, setSelectedTag } from '../redux/actions';
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { COLORS, SIZES } from '../constants';
 import { TimeSlider, SessionBtn, StudyTag } from '../myComponents';
 
 function Home({navigation}) {

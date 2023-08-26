@@ -1,18 +1,17 @@
 import React from 'react';
-import { Text, View, Alert, Button, TouchableOpacity } from 'react-native';
+import { Text, View, Alert, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 import Profile from './profile';
 import Statistics from './statistics';
 import Tags from './tags';
 import Settings from './settings';
 import About from './about';
-import Logout from './logout';
 import HomeStack from './homestack';
 import styles from '../myComponents/common/header/header/header.style';
 import { ScreenHeaderBtn } from '../myComponents';

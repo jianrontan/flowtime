@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, SafeAreaView, Text, Button, TouchableOpacity } from 'react-native';
+import { View, ScrollView, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Timer } from 'react-native-stopwatch-timer'
 import * as Notifications from 'expo-notifications';

@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, ScrollView, SafeAreaView, Text, Button, NativeModules, TouchableOpacity } from 'react-native';
+import { View, ScrollView, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { Stopwatch } from 'react-native-stopwatch-timer';
 import { useSelector, useDispatch } from 'react-redux';
-import { collection, addDoc, getDoc, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
 import { setSelectedTag } from '../redux/actions';
 import { StudyTag } from '../myComponents';
 import { setTotalSavedTime } from '../redux/actions';
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { COLORS, FONT, SIZES } from '../constants';
 import styles from '../myComponents/study/Styles/break.style';
-import { current } from '@reduxjs/toolkit';
 
 function Watch({ route, navigation }) {
     const auth = getAuth();

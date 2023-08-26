@@ -1,14 +1,13 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { View, ScrollView, SafeAreaView, FlatList } from 'react-native';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView, SafeAreaView } from 'react-native';
+import { useDispatch } from 'react-redux/es/exports';
 import { setBreakContinue, setBreakSave, setNotification } from '../redux/actions';
-import { collection, addDoc, getDoc, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { getDoc, updateDoc, doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
 import SettingsComponent from '../myComponents/drawer/settings/SettingsComponent';
-import { COLORS, icons, images, FONT, SIZES } from '../constants';
+import { COLORS } from '../constants';
 
 function Settings() {
   const auth = getAuth();
