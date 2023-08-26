@@ -11,7 +11,6 @@ import { StudyTag } from '../myComponents';
 import { setTotalSavedTime } from '../redux/actions';
 import { COLORS, icons, images, FONT, SIZES } from '../constants';
 import styles from '../myComponents/study/Styles/break.style';
-import { current } from '@reduxjs/toolkit';
 
 function Watch({ route, navigation }) {
     const auth = getAuth();

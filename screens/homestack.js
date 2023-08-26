@@ -5,7 +5,7 @@ import Home from './home';
 import Watch from './watch';
 import Break from './break';
 import { ScreenHeaderBtn } from "../myComponents";
-import styles from '../myComponents/common/header/header/header.style';
+import stylesHead from '../myComponents';
 import { COLORS, icons } from '../constants';
 
 const Stack = createNativeStackNavigator();
@@ -24,7 +24,7 @@ export default function HomeStack({ navigation }) {
                     />
                 ),
                 headerTitle: () => (
-                    <Text style={styles.headerStyle}>Flowtime</Text>
+                    <Text style={stylesHead.headerStyle}>Flowtime</Text>
                 ),
                 headerTitleAlign: 'center',
             }}>

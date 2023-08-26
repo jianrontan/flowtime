@@ -14,7 +14,7 @@ import Settings from './settings';
 import About from './about';
 import Logout from './logout';
 import HomeStack from './homestack';
-import styles from '../myComponents/common/header/header/header.style';
+import stylesHead from '../myComponents';
 import { ScreenHeaderBtn } from '../myComponents';
 import { COLORS, FONT, icons } from '../constants';
 
@@ -72,7 +72,7 @@ export default function NavStack() {
           <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
             <TouchableOpacity
-                style={styles.logoutTO}
+                style={stylesHead.logoutTO}
                 title="Logout"
                 onPress={() => 
                 Alert.alert(
@@ -91,7 +91,7 @@ export default function NavStack() {
                 )
               }
             >
-                <Text style={styles.logoutDrawerText}>Logout</Text>
+                <Text style={stylesHead.logoutDrawerText}>Logout</Text>
             </TouchableOpacity>
           </DrawerContentScrollView>
         );
@@ -118,7 +118,7 @@ export default function NavStack() {
                     headerLeft: () => {
                         const navigation = useNavigation();
                         return (
-                            <View style={styles.backButton}>
+                            <View style={stylesHead.backButton}>
                                 <ScreenHeaderBtn
                                     iconUrl={icons.left}
                                     dimension='60%'
@@ -130,7 +130,7 @@ export default function NavStack() {
                     },
                     headerTitle: route.name,
                     headerTitleAlign: 'center',
-                    headerTitleStyle: styles.headerStyle,
+                    headerTitleStyle: stylesHead.headerStyle,
                     headerShadowVisible: true,
                     drawerStyle: {
                         backgroundColor: COLORS.lightBeige,

@@ -12,6 +12,9 @@ web-build/
 
 # machine specific configuration files
 .env
+/secrets.json
+/firebaseConfig.js
+/google-services.json
 
 # macOS
 .DS_Store

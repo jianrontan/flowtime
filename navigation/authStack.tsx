@@ -10,7 +10,7 @@ import Welcome from '../screens/welcome';
 import SignUp from '../screens/signup';
 import SignIn from '../screens/signin';
 import ForgotPassword from '../screens/forgotpassword';
-import styles from '../myComponents/common/header/header/header.style';
+import { stylesHead } from '../myComponents';
 import { COLORS } from '../constants';
 
 const Stack = createNativeStackNavigator();
@@ -31,7 +31,7 @@ export default function AuthStack() {
         async function prepare() {
             try {
                 // Keeps SplashScreen visible until the app is ready
-                await SplashScreen.preventAutoHideAsync();
+                SplashScreen.preventAutoHideAsync();
             } catch (error) {
                 // If line above results in an error, error logs to console
                 console.warn(error);
@@ -39,7 +39,7 @@ export default function AuthStack() {
                 setAppIsReady(true);
 
                 if (fontsLoaded) {
-                    await SplashScreen.hideAsync();
+                    SplashScreen.hideAsync();
                 }
             }
         }
@@ -49,7 +49,7 @@ export default function AuthStack() {
     // useCallback creates a memoized callback onLayoutRootView that only changes appIsReady / fontsLoaded changes
     const onLayoutRootView = useCallback(async () => {
         if (appIsReady && fontsLoaded) {
-            await SplashScreen.hideAsync();
+            SplashScreen.hideAsync();
         }
     }, [appIsReady, fontsLoaded]);
 
@@ -64,7 +64,7 @@ export default function AuthStack() {
                 screenOptions={{
                     headerStyle: { backgroundColor: COLORS.lightBeige },
                     headerTitle: () => (
-                        <Text style={styles.headerStyle}>Welcome</Text>
+                        <Text style={stylesHead.headerStyle}>Welcome</Text>
                     ),
                     headerTitleAlign: 'center',
                 }}

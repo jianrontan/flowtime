@@ -5,7 +5,7 @@ import { getDoc, updateDoc, doc, setDoc, arrayUnion, arrayRemove } from 'firebas
 import { db } from '../config/firebase';
 import { getAuth } from 'firebase/auth';
 
-import { styles, tagStyles } from '../myComponents';
+import { tagStyles } from '../myComponents';
 import { setTags } from '../redux/actions';
 import { COLORS, SIZES } from '../constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
