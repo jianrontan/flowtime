@@ -21,7 +21,6 @@ export default {
     },
     "android": {
       "package": "com.ronbutanflowtime",
-      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/flowtime-icon-final.png",
         "backgroundColor": "#f7e2cb"
