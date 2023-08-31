@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         paddingTop: SIZES.mediumlarge,
         paddingLeft: SIZES.mediumlarge,
     },
-    logoutDrawerText:{
+    logoutDrawerText: {
         color: COLORS.themeColor,
         fontFamily: FONT.medium,
     },

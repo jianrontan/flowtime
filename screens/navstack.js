@@ -59,42 +59,42 @@ export default function NavStack() {
 
     const logoutConfirmation = async () => {
         try {
-          await auth.signOut();
-          console.log('User signed out!');
+            await auth.signOut();
+            console.log('User signed out!');
         } catch (error) {
-          console.error('Error signing out: ', error);
+            console.error('Error signing out: ', error);
         }
     };
 
     function CustomDrawerContent(props) {
         return (
-          <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
-            <TouchableOpacity
-                style={styles.logoutTO}
-                title="Logout"
-                onPress={() => 
-                Alert.alert(
-                  'Logout',
-                  'Are you sure you want to logout?',
-                  [
-                    {
-                      text: 'Cancel',
-                      style: 'cancel', 
-                    },
-                    {
-                      text: 'OK',
-                      onPress: logoutConfirmation,
-                    },
-                  ],
-                )
-              }
-            >
-                <Text style={styles.logoutDrawerText}>Logout</Text>
-            </TouchableOpacity>
-          </DrawerContentScrollView>
+            <DrawerContentScrollView {...props}>
+                <DrawerItemList {...props} />
+                <TouchableOpacity
+                    style={styles.logoutTO}
+                    title="Logout"
+                    onPress={() =>
+                        Alert.alert(
+                            'Logout',
+                            'Are you sure you want to logout?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    style: 'cancel',
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: logoutConfirmation,
+                                },
+                            ],
+                        )
+                    }
+                >
+                    <Text style={styles.logoutDrawerText}>Logout</Text>
+                </TouchableOpacity>
+            </DrawerContentScrollView>
         );
-      }
+    }
 
     return (
         <NavigationContainer onLayout={onLayoutRootView}>
