@@ -12,7 +12,7 @@ Video Demo: [CS50x Final Project Flowtime]()
 Flowtime is a mobile application that is used for the purpose of productivity. This app was inspired by the Flowtime technique, 
 an adaptation of the popular Pomodoro technique, read more about the Flowtime focus technique [here](https://zapier.com/blog/flowtime-technique/).
 
-#### Description:
+### Description:
 Flowtime allows the user to set their own ratio of break time to focus time and how ever long the user decides to focus, the
 ratio will be used to calculate the time that the user will get to take a break. The user can also change in settings the
 behavior of the break timer, to continue automatically once break timer ends or otherwise, to not save or save their break
@@ -20,7 +20,15 @@ time for later should they decide to end their break early, to turn on notificat
 set tags to track what they focused on. Users can also see their study time in the Statistics page and also manage their
 account, delete their account, change their email and password, and log out.
 
-#### Screenshots and explanations:
+### Screenshots:
+
+| Screenshots | Description |
+|-|-|
+| <img src="./screenshots/photo_2023-08-16_17-03-40.jpg" height="320" width="144" alt="Homepage"> | This is the homepage, the user can adjust the "Break Allowance/hr" to choose how much break time is given to the user per unit time focused |
+| <img src="./screenshots/photo_2023-08-16_17-03-51.jpg" height="320" width="144" alt="Focus Tag"> | The user can change the focus tag to track different tasks or work |
+| <img src="./screenshots/photo_2023-08-16_17-03-52.jpg" height="320" width="144" alt="Timer"> | The timer page, the user can see how long they focused on the timer and this will be the page they will be on while focused, when the user wants to take a break they can press break or if they want to end the session, they can press end |
+| <img src="./screenshots/photo_2023-08-16_17-03-53.jpg" height="320" width="144" alt="Break"> | The break page, the user will be given a time to take a break based on how long they focused and the break allowance they set for themselves, the user can also choose to continue or end the session |
+
 
 ## Files:
 | Screens | Description |
