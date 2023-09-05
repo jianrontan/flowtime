@@ -20,6 +20,8 @@ time for later should they decide to end their break early, to turn on notificat
 set tags to track what they focused on. Users can also see their study time in the Statistics page and also manage their
 account, delete their account, change their email and password, and log out.
 
+#### Screenshots and explanations:
+
 ## Files:
 | Screens | Description |
 |-|-|
@@ -73,3 +75,11 @@ account, delete their account, change their email and password, and log out.
 | icons.js | Imports icons from the asset file |
 | index.js | Exports icons and theme constants for easy use in other pages |
 | theme.js | Contains common colors, sizes, fonts, and shadows for use in other pages |
+
+## Design Choices:
+
+## Future Improvements:
+
+## How To Test:
+
+## Project Conclusion:
