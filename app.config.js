@@ -17,7 +17,8 @@ export default {
       "assets/fonts/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ronbutanflowtime"
     },
     "android": {
       "package": "com.ronbutanflowtime",
@@ -42,6 +43,12 @@ export default {
         "messagingSenderId": process.env.FIREBASE_MESSAGING_SENDER_ID,
         "appId": process.env.FIREBASE_APP_ID,
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/757fe2a6-3879-4098-98bb-cb0e8445f755"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
