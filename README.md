@@ -105,6 +105,11 @@ account, delete their account, change their email and password, and log out.
 | theme.js | Contains common colors, sizes, fonts, and shadows for use in other pages |
 
 ### Try it out yourself:
+Download the Expo Go app on [Android](https://play.google.com/store/apps/details?id=host.exp.exponent) or [IOS](https://apps.apple.com/sg/app/expo-go/id982107779) and copy the links into your browser to test.
+
+Android: exp://u.expo.dev/update/1907350e-9c79-4d98-a358-3bc4c3722d3f
+
+IOS: exp://u.expo.dev/update/e68e1a21-d9f2-45ff-a566-9268771531c3
 
 ## Conclusion:
 
