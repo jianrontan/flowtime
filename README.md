@@ -24,13 +24,33 @@ account, delete their account, change their email and password, and log out.
 
 | Screenshots | Description |
 |-|-|
-| <img src="./screenshots/photo_2023-08-16_17-03-40.jpg" height="320" width="144" alt="Homepage"> | This is the homepage, the user can adjust the "Break Allowance/hr" to choose how much break time is given to the user per unit time focused |
-| <img src="./screenshots/photo_2023-08-16_17-03-51.jpg" height="320" width="144" alt="Focus Tag"> | The user can change the focus tag to track different tasks or work |
-| <img src="./screenshots/photo_2023-08-16_17-03-52.jpg" height="320" width="144" alt="Timer"> | The timer page, the user can see how long they focused on the timer and this will be the page they will be on while focused, when the user wants to take a break they can press break or if they want to end the session, they can press end |
-| <img src="./screenshots/photo_2023-08-16_17-03-53.jpg" height="320" width="144" alt="Break"> | The break page, the user will be given a time to take a break based on how long they focused and the break allowance they set for themselves, the user can also choose to continue or end the session |
+| <img src="./screenshots/photo_2023-08-16_17-03-40.jpg" height="300" width="212" alt="Homepage"> | This is the homepage, the user can adjust the "Break Allowance/hr" to choose how much break time is given to the user per unit time focused |
+| <img src="./screenshots/photo_2023-08-16_17-03-51.jpg" height="300" width="212" alt="Focus Tag"> | The user can change the focus tag to track different tasks or work |
+| <img src="./screenshots/photo_2023-08-16_17-03-52.jpg" height="300" width="212" alt="Timer"> | The timer page, the user can see how long they focused on the timer and this will be the page they will be on while focused, when the user wants to take a break they can press break or if they want to end the session, they can press end |
+| <img src="./screenshots/photo_2023-08-16_17-03-53.jpg" height="300" width="212" alt="Break"> | The break page, the user will be given a time to take a break based on how long they focused and the break allowance they set for themselves, the user can also choose to continue or end the session |
+| <img src="./screenshots/photo_2023-08-16_17-03-55.jpg" height="300" width="212" alt="Settings"> | The settings page, the user is able to configure their preferences for how the app functions and enable or disable notifications |
+| <img src="./screenshots/Screenshot_20230906_094059.jpg" height="300" width="212" alt="Tags Page"> | In this page, the user can add tags or remove tags by holding down on any tag |
+| <img src="./screenshots/photo_2023-08-16_17-03-57.jpg" height="300" width="212" alt="Statistics"> | The statistics page, the user can select any range of dates to find out how long they focused for each tag and this page also displays the total time focused for each tag |
+| <img src="./screenshots/photo_2023-08-16_17-03-59.jpg" height="300" width="212" alt="Profile"> | The profile page, the user is able to manage their account from this page and also see their total focus time |
+
+### Design Choices:
+<table>
+  <tr>
+    <td>React Native</td>
+    <td>The decision to use React Native as the app's framework was driven by the extensive community support and its simplicity in allowing cross-platform support.</td>
+  </tr>
+  <tr>
+    <td>Redux</td>
+    <td>Initially, I didn't actually want to use Redux as I felt that the project was not large or complex enough to warrant putting in time and effort implementing Redux throughout the app. However, as I begun to implement my settings page, I realised that it would be rather useful and could even reduce the complexity in my code by utilizing Redux as it provides a way to cleanly manage the state of the different settings and make it much easier to pass state between different pages, especially between pages in different stacks (HomeStack and the drawer navigator NavStack). Redux is also used in conjunction with Firebase Firestore to store information about the users tags, and also used for storing saved break time (which can be turned on/off in the settings page). Overall, Redux made managing my app's state simpler, proving a centralized state management solution, as well as making debugging and dataflow more transparent.</td>
+  </tr>
+  <tr>
+    <td>Firebase</td>
+    <td>The decision to choose Firebase was rather clear. Firebase provides us with 2 crucial features, Firebase Authentication and Firestore Database, both of which integrates seamlessly with React Native, and in part, with Redux, allowing us to implement user authentication, and in turn, store user data. Firebase's powerful querying capabilities were also found to be useful in getting the data for the statistics page. Firebase provided a scalable and real-time database solution without the need for backend infrastructure.</td>
+  </tr>
+</table>
 
 
-## Files:
+## Explaining The Files:
 | Screens | Description |
 |-|-|
 | about.js | Page explaining the app and about this project (incomplete)|
@@ -84,10 +104,10 @@ account, delete their account, change their email and password, and log out.
 | index.js | Exports icons and theme constants for easy use in other pages |
 | theme.js | Contains common colors, sizes, fonts, and shadows for use in other pages |
 
-## Design Choices:
+### Try it out yourself:
 
-## Future Improvements:
+## Conclusion:
 
-## How To Test:
+### Future Improvements:
 
-## Project Conclusion:
+### Project Takeaways:
