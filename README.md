@@ -114,5 +114,9 @@ IOS: exp://u.expo.dev/update/e68e1a21-d9f2-45ff-a566-9268771531c3
 ## Conclusion:
 
 ### Future Improvements:
+Some future improvements could include implementing more ways to look at the user's data in statistics, perhaps by adding in a bar or pie chart to better visualize data. There are also certain improvements to be made to user experience, for example the switches and the user's slider value taking time to load when the page first opens and the sign up page appearing every app start up before the user is automatically logged in.
+
+Additional features in future updates could include a friend system where users can add friends and check how long their focus time was. Another feature could be streaks where if the user focuses for at least 10 minutes a day, that counts as extending the streak and these 2 features can better incentivize users to focus and complete their work.
 
 ### Project Takeaways:
+Overall, building this app has been a fun and fulfilling experience, and though it took much time and effort, the CS50x course has been an enriching experience and has been a great introduction to computer programming for me personally, and I would definitely recommend it to anyone wanting to start their journey as a software engineer. I went through much hardship and frustration to get to this point, and having finally completed my app, I felt a great sense of satisfaction and achievement, and I hope to go on to do greater and better things in my programming journey.
