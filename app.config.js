@@ -23,8 +23,8 @@ export default {
     "android": {
       "package": "com.ronbutanflowtime",
       "notification": {
-        "icon": "./assets/flowtime-icon-final.png",
-        "color": "#FFFFFF"
+        "icon": "./assets/flowtime-icon-final-notification.png",
+        "color": "#865946"
       },
       "adaptiveIcon": {
         "foregroundImage": "./assets/flowtime-icon-final.png",

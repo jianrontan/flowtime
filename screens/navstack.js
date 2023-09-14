@@ -147,7 +147,7 @@ export default function NavStack() {
                 <Drawer.Screen name="Statistics" component={Statistics} options={{ headerTitle: 'Statistics' }} />
                 <Drawer.Screen name="Tags" component={Tags} options={{ headerTitle: 'Tags' }} />
                 <Drawer.Screen name="Settings" component={Settings} options={{ headerTitle: 'Settings' }} />
-                <Drawer.Screen name="About" component={About} options={{ headerTitle: 'About' }} />
+                {/* <Drawer.Screen name="About" component={About} options={{ headerTitle: 'About' }} /> */}
             </Drawer.Navigator>
         </NavigationContainer>
     );
