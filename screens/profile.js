@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Alert, View, ScrollView, SafeAreaView, TouchableOpacity, Text } from 'react-native';
 import { getAuth, updateEmail, EmailAuthProvider, sendPasswordResetEmail, deleteUser, reauthenticateWithCredential, sendEmailVerification } from 'firebase/auth';
 import { db } from '../config/firebase';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import Dialog from 'react-native-dialog';
 
 import { COLORS, FONT, SIZES } from '../constants';
@@ -109,6 +109,17 @@ function Profile() {
     setPasswordDialogVisible(false);
   };
 
+  async function deleteFirestoreData(userId) {
+    const collections = ['settings', 'statistics', 'tags'];
+    for (let collectionName of collections) {
+      const q = query(collection(db, collectionName), where("id", "==", userId));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((document) => {
+        deleteDoc(doc(db, collectionName, document.id));
+      });
+    }
+  }
+
   const handleDeleteAccount = async () => {
     var credential = EmailAuthProvider.credential(
       auth.currentUser.email,
@@ -122,6 +133,7 @@ function Profile() {
       return;
     }
     try {
+      await deleteFirestoreData(userId)
       await deleteUser(auth.currentUser);
       Alert.alert('Account deleted', 'Thank you for using Flowtime.')
     } catch (error) {
