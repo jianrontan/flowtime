@@ -1,7 +1,7 @@
 # Flowtime
-My name is Jian Ron and this is my CS50 final project!
+My name is Jian Ron and this is my first mobile app!
 
-Video Demo: [CS50x Final Project Flowtime](https://youtu.be/CYGPzJoili4?si=pEdP7VWkqEDNGtRO)
+Video Demo: [Flowtime](https://youtu.be/CYGPzJoili4?si=pEdP7VWkqEDNGtRO)
 
 ## Features:
 * Framework: [React Native](https://reactnative.dev/docs/getting-started)
